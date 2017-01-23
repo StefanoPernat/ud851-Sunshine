@@ -20,15 +20,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--TODO (8) Wrap the TextView in a ScrollView-->
-    <!--TODO (9) Set the ScrollView width to match_parent and the height to wrap_content-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_weather_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="20sp"
+            android:text=""/>
+    </ScrollView>
 
     <!--TODO (2) Change the android:id attribute to tv_weather_data [OK]-->
-    <TextView
-        android:id="@+id/tv_weather_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textSize="20sp"
-        android:text=""/>
 </FrameLayout>
