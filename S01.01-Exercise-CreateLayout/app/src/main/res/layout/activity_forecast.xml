@@ -32,6 +32,4 @@
             android:textSize="20sp"
             android:text=""/>
     </ScrollView>
-
-    <!--TODO (2) Change the android:id attribute to tv_weather_data [OK]-->
 </FrameLayout>
