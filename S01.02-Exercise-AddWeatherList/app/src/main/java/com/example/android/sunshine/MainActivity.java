@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         for (String weatherDay: dummyData){
-            weatherTextView.setText(weatherTextView.getText()+weatherDay+"\n");
+            weatherTextView.setText(weatherTextView.getText()+weatherDay+"\n\n\n");
         }
     }
 }
