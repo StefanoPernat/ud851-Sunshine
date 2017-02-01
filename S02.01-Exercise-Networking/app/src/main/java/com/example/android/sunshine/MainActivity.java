@@ -20,6 +20,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.example.android.sunshine.data.SunshinePreferences;
+import com.example.android.sunshine.utilities.NetworkUtils;
+
+import java.io.IOException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,20 +41,39 @@ public class MainActivity extends AppCompatActivity {
          */
         mWeatherTextView = (TextView) findViewById(R.id.tv_weather_data);
 
-        // TODO (9) Call loadWeatherData to perform the network request to get the weather
+        loadWeatherData(SunshinePreferences.getPreferredWeatherLocation(MainActivity.this));
     }
 
-    // TODO (8) Create a method that will get the user's preferred location and execute your new AsyncTask and call it loadWeatherData
+    private void loadWeatherData(String userPreferredLocation){
+        new FetchWeatherTask().execute(userPreferredLocation);
+    }
 
     class FetchWeatherTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            return null;
+            String passedLocation = params[0];
+
+            if (passedLocation == null || passedLocation.equals("")){
+                return null;
+            }
+
+            String result;
+            try{
+                result = NetworkUtils.getResponseFromHttpUrl(
+                            NetworkUtils.buildUrl(passedLocation)
+                );
+                return result;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return null;
+            }
         }
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+            if (s != null && !s.equals("")){
+                mWeatherTextView.setText(s);
+            }
         }
     }
 }
