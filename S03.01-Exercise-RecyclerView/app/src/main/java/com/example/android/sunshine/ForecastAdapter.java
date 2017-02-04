@@ -10,7 +10,7 @@ import android.widget.TextView;
  * Created by stefanopernat on 04/02/17.
  */
 
-public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder{
+public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastAdapterViewHolder> {
     private String[] mWeatherData;
 
     @Override
