@@ -62,6 +62,7 @@ public class DetailActivity extends AppCompatActivity {
         if (id == R.id.action_setting){
             Intent settingIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingIntent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

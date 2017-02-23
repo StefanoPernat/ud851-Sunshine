@@ -349,6 +349,7 @@ public class MainActivity extends AppCompatActivity implements
         if (id == R.id.action_setting){
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
