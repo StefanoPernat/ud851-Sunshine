@@ -37,7 +37,6 @@ public class SettingsActivity extends AppCompatActivity {
         // TODO (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
 
         // Do step 9 within onCreatePreference
-        // TODO (9) Set the preference summary on each preference that isn't a CheckBoxPreference
 
         // TODO (13) Unregister SettingsFragment (this) as a SharedPreferenceChangedListener in onStop
 
@@ -54,20 +53,5 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setPreferenceSummary(Preference preference, Object value){
-        if (preference instanceof EditTextPreference){
-            String summaryValue = (String) value;
-            EditTextPreference p = (EditTextPreference) preference;
-            p.setSummary(summaryValue);
-        }
-
-        if (preference instanceof ListPreference){
-            ListPreference pref = (ListPreference) preference;
-            String summaryValue = (String) value;
-            int index = pref.findIndexOfValue(summaryValue);
-            pref.setSummary(pref.getEntries()[index]);
-        }
     }
 }
