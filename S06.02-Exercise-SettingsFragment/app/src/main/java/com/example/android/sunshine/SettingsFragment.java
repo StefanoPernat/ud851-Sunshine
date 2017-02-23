@@ -18,7 +18,8 @@ import android.view.ViewGroup;
 /**
  * custom implementation of {@link PreferenceFragmentCompat}
  */
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat
+                              implements SharedPreferences.OnSharedPreferenceChangeListener{
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.pref_general);
@@ -37,6 +38,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
+        prefs.registerOnSharedPreferenceChangeListener(this);
+    }
+
     private void setPreferenceSummary(Preference preference, Object value){
         if (preference instanceof EditTextPreference){
             String summaryValue = (String) value;
@@ -52,5 +60,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 pref.setSummary(pref.getEntries()[index]);
             }
         }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference preference = findPreference(key);
+
+        if (!(preference instanceof CheckBoxPreference)){
+            setPreferenceSummary(preference, sharedPreferences.getString(key, ""));
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
     }
 }
