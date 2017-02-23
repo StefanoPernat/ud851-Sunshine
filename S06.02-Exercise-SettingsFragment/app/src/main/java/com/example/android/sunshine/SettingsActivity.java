@@ -17,6 +17,9 @@ package com.example.android.sunshine;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.EditTextPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
 import android.view.MenuItem;
 
 /**
@@ -32,8 +35,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Do steps 5 - 11 within SettingsFragment
         // TODO (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
-
-        // TODO (8) Create a method called setPreferenceSummary that accepts a Preference and an Object and sets the summary of the preference
 
         // Do step 9 within onCreatePreference
         // TODO (9) Set the preference summary on each preference that isn't a CheckBoxPreference
@@ -53,5 +54,20 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setPreferenceSummary(Preference preference, Object value){
+        if (preference instanceof EditTextPreference){
+            String summaryValue = (String) value;
+            EditTextPreference p = (EditTextPreference) preference;
+            p.setSummary(summaryValue);
+        }
+
+        if (preference instanceof ListPreference){
+            ListPreference pref = (ListPreference) preference;
+            String summaryValue = (String) value;
+            int index = pref.findIndexOfValue(summaryValue);
+            pref.setSummary(pref.getEntries()[index]);
+        }
     }
 }
