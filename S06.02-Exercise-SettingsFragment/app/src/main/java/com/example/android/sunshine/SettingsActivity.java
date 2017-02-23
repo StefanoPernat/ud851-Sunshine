@@ -30,9 +30,6 @@ public class SettingsActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_settings);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        // TODO (4) Create SettingsFragment and extend PreferenceFragmentCompat
-
         // Do steps 5 - 11 within SettingsFragment
         // TODO (10) Implement OnSharedPreferenceChangeListener from SettingsFragment
 
